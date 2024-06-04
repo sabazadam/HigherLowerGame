@@ -1,16 +1,35 @@
-# This is a sample Python script.
+from game_data import data
+from art import *
+from random import randint
+print(logo)
+randomIndex = randint(0,len(data) - 1)
+randomIndex2 = randint(0,len(data) - 1)
+score = 0
+def take2differentItemInArray():
+    while True:
+        randomIndex = randint(0, len(data) - 1)
+        randomIndex2 = randint(0,len(data) - 1)
+        if randomIndex != randomIndex2:
+            break
+    return [data[randomIndex],data[randomIndex2]]
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def game():
+    liste = take2differentItemInArray()
+    for i in range(2):
+        print(f"{liste[i]['name']}, {liste[i]['description']}, from {liste[i]['country']}")
+        if i == 0: print(vs)
+    response = input("Who has more follower 'A' or 'B': " )
+    if response.lower() == "a":
+        if liste[0]['follower_count'] > liste[1]['follower_count']:
+            return True
+        else:
+            return False
+    else:
+        if liste[1]['follower_count'] > liste[0]['follower_count']:
+            return True
+        else:
+            return False
+while game():
+    score += 1
+    print(f"You're right! Current score: {score}")
+print(f"Sorry that's wrong. Final score= {score}")
